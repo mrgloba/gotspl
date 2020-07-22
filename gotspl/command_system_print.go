@@ -49,13 +49,13 @@ func (p PrintImpl) GetMessage() ([]byte, error) {
 		return nil, errors.New("ParseError PRINT Command: numberLabels should be specified")
 	}
 
-	if !(*p.numberLabels < PRINT_NUMBERLABELS_MAX && *p.numberLabels > PRINT_NUMBERLABELS_MIN) {
+	if !(*p.numberLabels <= PRINT_NUMBERLABELS_MAX && *p.numberLabels >= PRINT_NUMBERLABELS_MIN) {
 		return nil, errors.New("ParseError PRINT Command: numberLabels parameter must be between " +
 			strconv.Itoa(PRINT_NUMBERLABELS_MIN) + " and " + strconv.Itoa(PRINT_NUMBERLABELS_MAX))
 	}
 
 	if p.numberCopies != nil {
-		if !(*p.numberCopies < PRINT_NUMBERCOPIES_MAX && *p.numberCopies > PRINT_NUMBERCOPIES_MIN) {
+		if !(*p.numberCopies <= PRINT_NUMBERCOPIES_MAX && *p.numberCopies >= PRINT_NUMBERCOPIES_MIN) {
 			return nil, errors.New("ParseError PRINT Command: numberCopies parameter must be between " +
 				strconv.Itoa(PRINT_NUMBERCOPIES_MIN) + " and " + strconv.Itoa(PRINT_NUMBERCOPIES_MAX))
 		}

@@ -15,21 +15,23 @@
  */
 package gotspl
 
-const (
-	MEASUREMENT_SYSTEM_METRIC MeasurementSystem = iota + 1
-	MEASUREMENT_SYSTEM_DOT
-	MEASUREMENT_SYSTEM_ENGLISH
+import "bytes"
 
-	EMPTY_SPACE     = " "
-	VALUE_SEPARATOR = ","
-	DOUBLE_QUOTE    = "\""
+const HOME_NAME = "HOME"
 
-	UNIT_MM  = "mm"
-	UNIT_DOT = "dot"
-	LF       = 0x0A
-	CR       = 0x0D
-)
+type HomeImpl struct {
+}
 
-var (
-	LINE_ENDING_BYTES = []byte{LF}
-)
+type HomeBuilder interface {
+	TSPLCommand
+}
+
+func HomeCmd() HomeBuilder {
+	return HomeImpl{}
+}
+
+func (h HomeImpl) GetMessage() ([]byte, error) {
+	buf := bytes.NewBufferString(HOME_NAME)
+	buf.Write(LINE_ENDING_BYTES)
+	return buf.Bytes(), nil
+}
