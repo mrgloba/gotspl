@@ -20,14 +20,16 @@ const (
 	MEASUREMENT_SYSTEM_DOT
 	MEASUREMENT_SYSTEM_ENGLISH
 
-	EMPTY_SPACE     = " "
-	VALUE_SEPARATOR = ","
-	DOUBLE_QUOTE    = "\""
+	EMPTY_SPACE           = " "
+	VALUE_SEPARATOR       = ","
+	DOUBLE_QUOTE          = "\""
+	STATUS_COMMAND_PREFIX = "!"
 
 	UNIT_MM  = "mm"
 	UNIT_DOT = "dot"
 	LF       = 0x0A
 	CR       = 0x0D
+	ESC      = 0x1B
 )
 
 var (

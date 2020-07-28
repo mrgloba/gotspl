@@ -15,12 +15,23 @@
  */
 package gotspl
 
-type TSPLClient interface {
-	Connect() error
-	Disconnect() error
-	SendData(data []byte) error
-	ReadData(data []byte) error
-	SendCommandSequence(commandSequence TSPLCommandSequence) error
-	SendCommand(command TSPLCommand) error
-	IsConnected() bool
+import "bytes"
+
+const FORMFEED_NAME = "FORMFEED"
+
+type FormFeedImpl struct {
+}
+
+type FormFeedBuilder interface {
+	TSPLCommand
+}
+
+func FormFeedCmd() FormFeedBuilder {
+	return FormFeedImpl{}
+}
+
+func (c FormFeedImpl) GetMessage() ([]byte, error) {
+	buf := bytes.NewBufferString(FORMFEED_NAME)
+	buf.Write(LINE_ENDING_BYTES)
+	return buf.Bytes(), nil
 }

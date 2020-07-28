@@ -15,12 +15,23 @@
  */
 package gotspl
 
-type TSPLClient interface {
-	Connect() error
-	Disconnect() error
-	SendData(data []byte) error
-	ReadData(data []byte) error
-	SendCommandSequence(commandSequence TSPLCommandSequence) error
-	SendCommand(command TSPLCommand) error
-	IsConnected() bool
+import "bytes"
+
+const INITIALPRINTER_NAME = "INITIALPRINTER"
+
+type InitialPrinterImpl struct {
+}
+
+type InitialPrinterBuilder interface {
+	TSPLCommand
+}
+
+func InitialPrinterCmd() InitialPrinterBuilder {
+	return InitialPrinterImpl{}
+}
+
+func (c InitialPrinterImpl) GetMessage() ([]byte, error) {
+	buf := bytes.NewBufferString(INITIALPRINTER_NAME)
+	buf.Write(LINE_ENDING_BYTES)
+	return buf.Bytes(), nil
 }

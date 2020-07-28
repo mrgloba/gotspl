@@ -15,12 +15,23 @@
  */
 package gotspl
 
-type TSPLClient interface {
-	Connect() error
-	Disconnect() error
-	SendData(data []byte) error
-	ReadData(data []byte) error
-	SendCommandSequence(commandSequence TSPLCommandSequence) error
-	SendCommand(command TSPLCommand) error
-	IsConnected() bool
+import "bytes"
+
+const EOJ_NAME = "EOJ"
+
+type EojImpl struct {
+}
+
+type EojBuilder interface {
+	TSPLCommand
+}
+
+func EojCmd() EojBuilder {
+	return EojImpl{}
+}
+
+func (c EojImpl) GetMessage() ([]byte, error) {
+	buf := bytes.NewBufferString(EOJ_NAME)
+	buf.Write(LINE_ENDING_BYTES)
+	return buf.Bytes(), nil
 }

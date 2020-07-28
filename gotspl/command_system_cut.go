@@ -15,12 +15,23 @@
  */
 package gotspl
 
-type TSPLClient interface {
-	Connect() error
-	Disconnect() error
-	SendData(data []byte) error
-	ReadData(data []byte) error
-	SendCommandSequence(commandSequence TSPLCommandSequence) error
-	SendCommand(command TSPLCommand) error
-	IsConnected() bool
+import "bytes"
+
+const CUT_NAME = "CUT"
+
+type CutImpl struct {
+}
+
+type CutBuilder interface {
+	TSPLCommand
+}
+
+func CutCmd() CutBuilder {
+	return CutImpl{}
+}
+
+func (c CutImpl) GetMessage() ([]byte, error) {
+	buf := bytes.NewBufferString(CUT_NAME)
+	buf.Write(LINE_ENDING_BYTES)
+	return buf.Bytes(), nil
 }

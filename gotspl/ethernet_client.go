@@ -15,7 +15,10 @@
  */
 package gotspl
 
-import "net"
+import (
+	"context"
+	"net"
+)
 
 const NET_TCP_NETWORK = "tcp"
 
@@ -64,4 +67,18 @@ func (c *EthernetTSPLClient) SendCommandSequence(commandSequence TSPLCommandSequ
 	}
 
 	return c.SendData(seq)
+}
+
+func (c *EthernetTSPLClient) SendCommand(command TSPLCommand) error {
+	cmd, err := command.GetMessage()
+	if err != nil {
+		return err
+	}
+
+	return c.SendData(cmd)
+}
+
+func (c *EthernetTSPLClient) printerDataPuller(ctx context.Context, dataChan <-chan int) {
+	dataChan = make(chan int)
+
 }
