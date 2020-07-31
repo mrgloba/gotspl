@@ -1,5 +1,7 @@
 gotspl
 ======
+[![Build Status](https://travis-ci.org/mrgloba/gotspl.svg?branch=master)](https://travis-ci.org/mrgloba/gotspl)
+[![Test Coverage](https://codecov.io/gh/mrgloba/gotspl/branch/master/graph/badge.svg)](https://codecov.io/gh/mrgloba/gotspl)
 
 Golang client for TSC printers (TSPL).
 
