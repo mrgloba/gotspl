@@ -22,6 +22,7 @@ const (
 
 	EMPTY_SPACE           = " "
 	VALUE_SEPARATOR       = ","
+	EQUAL_SYMBOL          = "="
 	DOUBLE_QUOTE          = "\""
 	STATUS_COMMAND_PREFIX = "!"
 

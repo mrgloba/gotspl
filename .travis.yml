@@ -1,0 +1,14 @@
+language: go
+
+go:
+  - 1.14.x
+  - tip
+
+before_install:
+  - go get -t -v ./gotspl_test/...
+
+script:
+  - go test ./gotspl_test/... -race -coverpkg=./gotspl/... -coverprofile=coverage.txt -covermode=atomic
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

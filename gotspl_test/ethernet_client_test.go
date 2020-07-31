@@ -50,7 +50,7 @@ func TestEthernetTSPLClient(t *testing.T) {
 	}
 
 	data := []byte("TEST")
-	data = append(data, byte(0x13))
+	data = append(data, byte(0x0A))
 	err = client.SendData(data)
 
 	if err != nil {

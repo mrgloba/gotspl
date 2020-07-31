@@ -60,7 +60,7 @@ func (t *TCPServer) handleConnection(conn net.Conn) {
 
 	rw := bufio.NewReadWriter(bufio.NewReader(conn), bufio.NewWriter(conn))
 	for {
-		req, err := rw.ReadBytes(0x13)
+		req, err := rw.ReadBytes(0x0A)
 		if err != nil {
 			rw.WriteString("failed to read input")
 			rw.Flush()

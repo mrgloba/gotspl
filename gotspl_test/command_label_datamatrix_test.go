@@ -73,7 +73,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -90,7 +90,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,c126, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,c126, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -107,7 +107,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,x18, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,x18, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -124,7 +124,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,r90, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,r90, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -141,7 +141,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,a1, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,a1, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -158,7 +158,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				-1,
 				-1,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,a0, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,a0, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -175,7 +175,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				11,
 				10,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,10,11, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,10,11, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
@@ -192,7 +192,7 @@ func TestDataMatrixImpl_GetMessage(t *testing.T) {
 				11,
 				10,
 				"TEST CONTENT"},
-			append([]byte("DATAMATRIX 10,10,100,100,c126,x18,r180,a1,10,11, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
+			append([]byte("DMATRIX 10,10,100,100,c126,x18,r180,a1,10,11, \"TEST CONTENT\""), gotspl.LINE_ENDING_BYTES...),
 			false,
 		},
 
