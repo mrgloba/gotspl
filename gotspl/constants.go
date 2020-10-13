@@ -35,4 +35,5 @@ const (
 
 var (
 	LINE_ENDING_BYTES = []byte{LF}
+    ROTATION_ANGLES = []int{0, 90, 180, 270}
 )

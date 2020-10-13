@@ -50,15 +50,12 @@ func (d DownloadImpl) GetMessage() ([]byte, error) {
 		return nil, errors.New("ParseError DOWNLOAD Command: name should be specified")
 	}
 
-	if d.storage == nil {
-		d.storage = new(string)
-		*d.storage = string(DOWNLOAD_STORGAE_DRAM)
-	}
-
 	buf := bytes.NewBufferString(DOWNLOAD_NAME)
 	buf.WriteString(EMPTY_SPACE)
-	buf.WriteString(*d.storage)
-	buf.WriteString(VALUE_SEPARATOR)
+	if d.storage != nil {
+		buf.WriteString(*d.storage)
+		buf.WriteString(VALUE_SEPARATOR)
+	}
 	buf.WriteString(DOUBLE_QUOTE)
 	buf.WriteString(*d.name)
 	buf.WriteString(DOUBLE_QUOTE)

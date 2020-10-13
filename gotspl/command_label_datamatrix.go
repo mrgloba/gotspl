@@ -30,8 +30,6 @@ const (
 	DATAMATRIX_COLS_MAX = 144
 )
 
-var DATAMATRIX_ROTATION_ANGLES = []int{0, 90, 180, 270}
-
 type DataMatrixImpl struct {
 	xCoordinate             *int
 	yCoordinate             *int
@@ -44,6 +42,7 @@ type DataMatrixImpl struct {
 	numberCols              *int
 	numberRows              *int
 	content                 *string
+	contentQuote			bool
 }
 
 type DataMatrixBuilder interface {
@@ -58,7 +57,7 @@ type DataMatrixBuilder interface {
 	IsRectangle(rectangle bool) DataMatrixBuilder
 	NumberCols(cols int) DataMatrixBuilder
 	NumberRows(rows int) DataMatrixBuilder
-	Content(content string) DataMatrixBuilder
+	Content(content string, quote bool) DataMatrixBuilder
 }
 
 func DataMatrixCmd() DataMatrixBuilder {
@@ -79,11 +78,11 @@ func (d DataMatrixImpl) GetMessage() ([]byte, error) {
 	}
 
 	if d.rotation != nil {
-		if !findIntInSlice(DATAMATRIX_ROTATION_ANGLES, *d.rotation) {
+		if !findIntInSlice(ROTATION_ANGLES, *d.rotation) {
 
 			var err_str string
 
-			for _, v := range DATAMATRIX_ROTATION_ANGLES {
+			for _, v := range ROTATION_ANGLES {
 				err_str += strconv.Itoa(v)
 				err_str += ","
 			}
@@ -157,10 +156,9 @@ func (d DataMatrixImpl) GetMessage() ([]byte, error) {
 		buf.WriteString(VALUE_SEPARATOR)
 	}
 
-	buf.WriteString(EMPTY_SPACE)
-	buf.WriteString(DOUBLE_QUOTE)
+	if d.contentQuote { buf.WriteString(DOUBLE_QUOTE) }
 	buf.WriteString(*d.content)
-	buf.WriteString(DOUBLE_QUOTE)
+	if d.contentQuote { buf.WriteString(DOUBLE_QUOTE) }
 	buf.Write(LINE_ENDING_BYTES)
 	return buf.Bytes(), nil
 }
@@ -245,10 +243,11 @@ func (d DataMatrixImpl) NumberRows(rows int) DataMatrixBuilder {
 	return d
 }
 
-func (d DataMatrixImpl) Content(content string) DataMatrixBuilder {
+func (d DataMatrixImpl) Content(content string, quote bool) DataMatrixBuilder {
 	if d.content == nil {
 		d.content = new(string)
 	}
 	*d.content = content
+	d.contentQuote = quote
 	return d
 }

@@ -19,8 +19,9 @@ type TSPLClient interface {
 	Connect() error
 	Disconnect() error
 	SendData(data []byte) error
-	ReadData(data []byte) error
+	ReadData(data []byte) (int,error)
 	SendCommandSequence(commandSequence TSPLCommandSequence) error
 	SendCommand(command TSPLCommand) error
 	IsConnected() bool
+	AddResponseListener(listener chan *RawResponseEvent)
 }
